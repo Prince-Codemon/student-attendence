@@ -77,36 +77,44 @@ const Attendance = () => {
 
       <div className="students">
         <h2>Students</h2>
-        <p>Present Students :{present} </p>
-        <table>
-          <thead>
-            <tr>
-              <th>Roll Number</th>
-              <th>Name</th>
-              <th>Check In</th>
-              <th>Check Out</th>
-            </tr>
-          </thead>
-          <tbody>
-            {students.map((student) => (
-              <tr key={student.rollNumber}>
-                <td>{student.rollNumber}</td>
-                <td>{student.name}</td>
-                <td>{student.checkin}</td>
-                <td>
-                  {student.checkout === null ? (
-                    <button onClick={() => checkOut(student.rollNumber)}>
-                      {" "}
-                      Check Out
-                    </button>
-                  ) : (
-                    student.checkout
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+
+        {students.length < 1 ? (
+          <p>No data </p>
+        ) : (
+          <>
+            <p>Present Students :{present} </p>
+            <p>Total Students :{students.length} </p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Roll Number</th>
+                  <th>Name</th>
+                  <th>Check In</th>
+                  <th>Check Out</th>
+                </tr>
+              </thead>
+              <tbody>
+                {students.map((student) => (
+                  <tr key={student.rollNumber}>
+                    <td>{student.rollNumber}</td>
+                    <td>{student.name}</td>
+                    <td>{student.checkin}</td>
+                    <td>
+                      {student.checkout === null ? (
+                        <button onClick={() => checkOut(student.rollNumber)}>
+                          {" "}
+                          Check Out
+                        </button>
+                      ) : (
+                        student.checkout
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        )}
       </div>
     </div>
   );
