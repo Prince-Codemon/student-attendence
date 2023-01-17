@@ -42,6 +42,11 @@ const Attendance = () => {
     setStudents([...students]);
     localStorage.setItem("students", JSON.stringify(students));
   };
+  const clearRecords = () => {
+    setStudents([]);
+    localStorage.setItem("students", JSON.stringify([]));
+  };
+
   useEffect(() => {
     let count = 0;
     students.forEach((student) => {
@@ -84,6 +89,7 @@ const Attendance = () => {
           <>
             <p>Present Students :{present} </p>
             <p>Total Students :{students.length} </p>
+            <button onClick={clearRecords}>Clear Records</button>
             <table>
               <thead>
                 <tr>
